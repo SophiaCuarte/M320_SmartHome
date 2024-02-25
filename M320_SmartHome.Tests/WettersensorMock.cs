@@ -16,7 +16,7 @@ namespace M320_SmartHome.Tests
             this.Wetterdaten = new Wetterdaten()
             {
                 Aussentemperatur = aussentemperatur,
-                Regen = regen,
+                Regen = regen, 
                 Windgeschwindigkeit = wind
             };
         }

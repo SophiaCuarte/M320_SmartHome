@@ -1,21 +1,31 @@
 ﻿
 namespace M320_SmartHome {
-    public class Heizungsventil : ZimmerDecorator {
-        private bool heizungsventilOffen;
+    public class Heizungsventil : ZimmerDecorator
+    {
+        public bool HeizungsventilOffen { get; private set; }
+
         public Heizungsventil(IZimmer zimmer) : base(zimmer) { }
-        public override void VerarbeiteWetterdaten(Wetterdaten wetterdaten) {
+
+        public override void VerarbeiteWetterdaten(Wetterdaten wetterdaten)
+        {
             base.VerarbeiteWetterdaten(wetterdaten);
-            if(wetterdaten.Aussentemperatur < TemperaturVorgabe) {
-                if(!heizungsventilOffen) {
+            if (wetterdaten.Aussentemperatur < TemperaturVorgabe)
+            {
+                if (!HeizungsventilOffen)
+                {
                     Console.WriteLine($"Heizungsventil wird geöffnet.");
-                    heizungsventilOffen = true;
+                    HeizungsventilOffen = true;
                 }
-            } else {
-                if(heizungsventilOffen) {
+            }
+            else
+            {
+                if (HeizungsventilOffen)
+                {
                     Console.WriteLine($"Heizungsventil wird geschlossen.");
-                    heizungsventilOffen = false;
+                    HeizungsventilOffen = false;
                 }
             }
         }
     }
+
 }

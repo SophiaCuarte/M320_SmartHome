@@ -1,4 +1,6 @@
-﻿namespace M320_SmartHome {
+﻿using System.Reflection;
+
+namespace M320_SmartHome {
     public class Wohnung {
         private List<IZimmer> zimmerList = new List<IZimmer>();
         private iWettersensor wettersensor;
@@ -39,6 +41,22 @@
         public IZimmer GetZimmer(string zimmername)
         {
             return this.zimmerList.FirstOrDefault(x => x.Name == zimmername);
+        }
+
+        public T GetZimmer<T>(string zimmername)
+        {
+            var zimmer = this.GetZimmer(zimmername);
+
+            var fi = typeof(ZimmerDecorator).GetField("zimmer", BindingFlags.NonPublic | BindingFlags.Instance);
+
+            while (true)
+            {
+                if (zimmer is T)
+                {
+                    return (T)zimmer;
+                }
+                zimmer = (IZimmer)fi.GetValue(zimmer);
+            }
         }
     }
 }

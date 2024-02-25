@@ -1,7 +1,10 @@
 ﻿namespace M320_SmartHome {
     public class Markisensteuerung : ZimmerDecorator {
-        private bool markiseEingefahren;
+        public bool markiseEingefahren;
         public Markisensteuerung(IZimmer zimmer) : base(zimmer) { }
+
+        public bool MarkiseEingefahren { get; set; }
+
         public override void VerarbeiteWetterdaten(Wetterdaten wetterdaten) {
             base.VerarbeiteWetterdaten(wetterdaten);
             if(wetterdaten.Aussentemperatur > TemperaturVorgabe) {

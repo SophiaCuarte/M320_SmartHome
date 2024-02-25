@@ -1,6 +1,9 @@
 ﻿namespace M320_SmartHome {
-    public class Jalousiensteuerung : ZimmerDecorator {
+    public class Jalousiensteuerung : ZimmerDecorator
+    {
         private bool jalousieOffen;
+        public bool JalousieOffen => jalousieOffen;
+
         public Jalousiensteuerung(IZimmer zimmer) : base(zimmer) { }
 
         public override void VerarbeiteWetterdaten(Wetterdaten wetterdaten) {
